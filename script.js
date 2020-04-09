@@ -5,12 +5,13 @@ function Book() {
   this.author = 'test';
   this.title = 'test';
   this.numberOfPages = 123;
-  this.isReaded = false;
+  this.isReaded = 'on';
 }
 
 /** Add Book to Array  */
 function addBookToLibrary() {
-  const form = document.forms['bookForm'];
+  console.log(myLibrary);
+  const form = document.forms.bookForm;
   const book = new Book();
   book.author = form.author.value;
   book.title = form.title.value;
@@ -19,6 +20,7 @@ function addBookToLibrary() {
   myLibrary.push(book);
   console.log(myLibrary);
   const mainContainer = document.getElementById('display');
+  form.reset();
   mainContainer.innerHTML = '';
   createBookLibrary();
 }
@@ -29,14 +31,14 @@ function seeds() {
   b1.author = 'William Walker Atkinson';
   b1.title = 'Le Kybalion';
   b1.numberOfPages = 233;
-  b1.isReaded = true;
+  b1.isReaded = 'on';
   myLibrary.push(b1);
 
   b1 = new Book();
   b1.author = 'Charles Webster Leadbeater';
   b1.title = 'Occult Chemistry';
   b1.numberOfPages = 114;
-  b1.isReaded = true;
+  b1.isReaded = 'on';
   myLibrary.push(b1);
 }
 
@@ -68,5 +70,10 @@ function createBookLibrary() {
   });
 }
 
-seeds();
-createBookLibrary();
+window.onload = () => {
+  seeds();
+  createBookLibrary();
+  const form = document.getElementById('bookForm');
+  form.addEventListener('submit', addBookToLibrary);
+};
+
