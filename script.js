@@ -8,6 +8,16 @@ function Book() {
   this.isReaded = 'on';
 }
 
+/** Create the childElement
+ * @param {Object} parent The Parent element of current Node.
+ * @param {Object} obj The Future Child element of current Node.
+ */
+function elementCreator(parent, obj) {
+  const span = document.createElement('span');
+  span.appendChild(document.createTextNode(obj));
+  parent.appendChild(span);
+}
+
 /** Nest all array element inside the div */
 function render() {
   myLibrary.forEach(function(book, index) {
@@ -58,20 +68,10 @@ function seeds() {
   myLibrary.push(b1);
 }
 
-/** Create the childElement
- * @param {Object} parent The Parent element of current Node.
- * @param {Object} obj The Future Child element of current Node.
- */
-function elementCreator(parent, obj) {
-  const span = document.createElement('span');
-  span.appendChild(document.createTextNode(obj));
-  parent.appendChild(span);
-}
 
 window.onload = () => {
   seeds();
   render();
   const form = document.getElementById('bookForm');
   form.addEventListener('submit', addBookToLibrary);
-  
 };
