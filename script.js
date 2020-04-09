@@ -1,5 +1,6 @@
 const myLibrary = [];
 
+/** Generate an Empty Book  */
 function Book() {
   this.author = 'test';
   this.title = 'test';
@@ -7,16 +8,25 @@ function Book() {
   this.isReaded = false;
 }
 
+/** Add Book to Array  */
 function addBookToLibrary() {
-  let form = document.forms['bookForm']
-  //let book = new Book();
-  console.log(form['author'])
-  //book.author = form['author']
-  //myLibrary.push(book);
+  const form = document.forms['bookForm'];
+  const book = new Book();
+  console.log(form['author'].value);
+  book.author = form['author'].value;
+  book.title = form['title'].value;
+  book.numberOfPages = form['pages'].value;
+  book.isReaded = form['readed'].value;
+  myLibrary.push(book);
+  console.log(myLibrary);
+  const mainContainer = document.getElementById('display');
+  mainContainer.innerHTML = '';
+  createBookLibrary();
 }
 
-function Seeds() {
-  let b1 = new Book(); 
+/** Generate first 2 values of DB  */
+function seeds() {
+  let b1 = new Book();
   b1.author = 'William Walker Atkinson';
   b1.title = 'Le Kybalion';
   b1.numberOfPages = 233;
@@ -31,20 +41,29 @@ function Seeds() {
   myLibrary.push(b1);
 }
 
-Seeds();
-
+/** Create the childElement
+ * @param {Object} parent The Parent element of current Node.
+ * @param {Object} obj The Future Child element of current Node.
+ */
 function elementCreator(parent, obj) {
   const span = document.createElement('span');
   span.appendChild(document.createTextNode(obj));
   parent.appendChild(span);
 }
 
-myLibrary.forEach(function (book, index) {
-  const container = document.createElement('div');
-  container.id = 'book-${(index + 1)}';
+/** Nest all array element inside the div */
+function createBookLibrary() {
+  myLibrary.forEach(function(book, index) {
+    const container = document.createElement('div');
+    container.id = `book-${(index + 1)}`;
 
-  for (var c in book) {
-    elementCreator(container, book[c]);
-  }
-  document.getElementById('display').appendChild(container);
-})
+    for (const c in book) {
+      elementCreator(container, book[c]);
+    }
+
+    document.getElementById('display').appendChild(container);
+  });
+}
+
+seeds();
+createBookLibrary();
