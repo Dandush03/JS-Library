@@ -16,7 +16,7 @@ function addBookToLibrary() {
 }
 
 function Seeds() {
-  let b1 = new Book();
+  let b1 = new Book(); 
   b1.author = 'William Walker Atkinson';
   b1.title = 'Le Kybalion';
   b1.numberOfPages = 233;
@@ -41,7 +41,7 @@ function elementCreator(parent, obj) {
 
 myLibrary.forEach(function (book, index) {
   const container = document.createElement('div');
-  container.id = 'book-' + (index + 1);
+  container.id = 'book-${(index + 1)}';
 
   for (var c in book) {
     elementCreator(container, book[c]);
