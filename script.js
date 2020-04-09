@@ -55,12 +55,14 @@ function createBookLibrary() {
   myLibrary.forEach(function(book, index) {
     const container = document.createElement('div');
     container.id = `book-${(index + 1)}`;
-    if (book.author != null) {
-      for (const c in book) {
+    for (const c in book) {
+      if (book[c] != null) {
         elementCreator(container, book[c]);
+      } else {
+        myLibrary.pop(book);
+        createBookLibrary();
       }
     }
-    
 
     document.getElementById('display').appendChild(container);
   });
