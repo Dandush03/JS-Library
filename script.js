@@ -9,7 +9,7 @@ function Book() {
 }
 
 /** Nest all array element inside the div */
-function createBookLibrary() {
+function render() {
   myLibrary.forEach(function(book, index) {
     const container = document.createElement('div');
     container.id = `book-${(index + 1)}`;
@@ -18,7 +18,7 @@ function createBookLibrary() {
         elementCreator(container, book[c]);
       } else {
         myLibrary.pop(book);
-        createBookLibrary();
+        render();
       }
     }
 
@@ -38,7 +38,7 @@ function addBookToLibrary() {
   const mainContainer = document.getElementById('display');
   form.reset();
   mainContainer.innerHTML = '';
-  createBookLibrary();
+  render();
 }
 
 /** Generate first 2 values of DB  */
@@ -70,7 +70,8 @@ function elementCreator(parent, obj) {
 
 window.onload = () => {
   seeds();
-  createBookLibrary();
+  render();
   const form = document.getElementById('bookForm');
   form.addEventListener('submit', addBookToLibrary);
+  
 };
