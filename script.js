@@ -12,11 +12,10 @@ function Book() {
 function addBookToLibrary() {
   const form = document.forms['bookForm'];
   const book = new Book();
-  console.log(form['author'].value);
-  book.author = form['author'].value;
-  book.title = form['title'].value;
-  book.numberOfPages = form['pages'].value;
-  book.isReaded = form['readed'].value;
+  book.author = form.author.value;
+  book.title = form.title.value;
+  book.numberOfPages = form.pages.value;
+  book.isReaded = form.readed.value;
   myLibrary.push(book);
   console.log(myLibrary);
   const mainContainer = document.getElementById('display');
@@ -56,10 +55,12 @@ function createBookLibrary() {
   myLibrary.forEach(function(book, index) {
     const container = document.createElement('div');
     container.id = `book-${(index + 1)}`;
-
-    for (const c in book) {
-      elementCreator(container, book[c]);
+    if (book.author != null) {
+      for (const c in book) {
+        elementCreator(container, book[c]);
+      }
     }
+    
 
     document.getElementById('display').appendChild(container);
   });
