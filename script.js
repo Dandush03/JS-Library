@@ -1,11 +1,11 @@
-let myLibrary = [];
+const myLibrary = [];
 
 function Book() {
   this.author = 'test';
   this.title = 'test';
   this.numberOfPages = 123;
   this.isReaded = false;
-};
+}
 
 function addBookToLibrary() {
   let form = document.forms['bookForm']
@@ -13,10 +13,10 @@ function addBookToLibrary() {
   console.log(form['author'])
   //book.author = form['author']
   //myLibrary.push(book);
-};
+}
 
 function Seeds() {
-  b1 = new Book();
+  let b1 = new Book();
   b1.author = 'William Walker Atkinson';
   b1.title = 'Le Kybalion';
   b1.numberOfPages = 233;
