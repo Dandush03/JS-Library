@@ -8,9 +8,26 @@ function Book() {
   this.isReaded = 'on';
 }
 
+/** Nest all array element inside the div */
+function createBookLibrary() {
+  myLibrary.forEach(function(book, index) {
+    const container = document.createElement('div');
+    container.id = `book-${(index + 1)}`;
+    for (const c in book) {
+      if (book[c] != null) {
+        elementCreator(container, book[c]);
+      } else {
+        myLibrary.pop(book);
+        createBookLibrary();
+      }
+    }
+
+    document.getElementById('display').appendChild(container);
+  });
+}
+
 /** Add Book to Array  */
 function addBookToLibrary() {
-  console.log(myLibrary);
   const form = document.forms.bookForm;
   const book = new Book();
   book.author = form.author.value;
@@ -18,7 +35,6 @@ function addBookToLibrary() {
   book.numberOfPages = form.pages.value;
   book.isReaded = form.readed.value;
   myLibrary.push(book);
-  console.log(myLibrary);
   const mainContainer = document.getElementById('display');
   form.reset();
   mainContainer.innerHTML = '';
@@ -52,28 +68,9 @@ function elementCreator(parent, obj) {
   parent.appendChild(span);
 }
 
-/** Nest all array element inside the div */
-function createBookLibrary() {
-  myLibrary.forEach(function(book, index) {
-    const container = document.createElement('div');
-    container.id = `book-${(index + 1)}`;
-    for (const c in book) {
-      if (book[c] != null) {
-        elementCreator(container, book[c]);
-      } else {
-        myLibrary.pop(book);
-        createBookLibrary();
-      }
-    }
-
-    document.getElementById('display').appendChild(container);
-  });
-}
-
 window.onload = () => {
   seeds();
   createBookLibrary();
   const form = document.getElementById('bookForm');
   form.addEventListener('submit', addBookToLibrary);
 };
-
