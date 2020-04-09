@@ -29,22 +29,22 @@ function Seeds() {
   b1.numberOfPages = 114;
   b1.isReaded = true;
   myLibrary.push(b1);
-};
+}
 
 Seeds();
 
 function elementCreator(parent, obj) {
-  let span = document.createElement('span');
+  const span = document.createElement('span');
   span.appendChild(document.createTextNode(obj));
   parent.appendChild(span);
 }
 
 myLibrary.forEach(function (book, index) {
-  let container = document.createElement('div');
-  container.id = "book-" + (index + 1);
+  const container = document.createElement('div');
+  container.id = 'book-' + (index + 1);
 
   for (var c in book) {
     elementCreator(container, book[c]);
   }
-  document.getElementById("display").appendChild(container);
-});
+  document.getElementById('display').appendChild(container);
+})
