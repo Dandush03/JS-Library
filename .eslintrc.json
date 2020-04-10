@@ -1,6 +1,6 @@
 {
   "ignorePatterns": [
-    "*.config.js"
+    ".stylelint.config.js"
   ],
   "env": {
     "browser": true,
