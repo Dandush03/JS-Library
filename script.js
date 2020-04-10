@@ -2,6 +2,8 @@
 //localStorage.removeItem('library')
 let myLibrary
 localLibrary = localStorage.getItem('library');
+
+/** Check if Local storage exits */
 if (localLibrary === null) {
   /** Generate first 2 values of DB  */
   function seeds() {
@@ -23,7 +25,7 @@ if (localLibrary === null) {
   }
   myLibrary = [];
   seeds();
-  localStorage.setItem('library',JSON.stringify(myLibrary))
+  localStorage.setItem('library', JSON.stringify(myLibrary))
 } else {
   myLibrary = JSON.parse(localStorage.getItem('library'));
 }
@@ -54,14 +56,14 @@ function changeStatus(e) {
         target.innerText = 'Readed';
       }
     }
-    localStorage.setItem('library',JSON.stringify(myLibrary))
+    localStorage.setItem('library', JSON.stringify(myLibrary))
   });
 }
 
+/** Check for max length */
 function maxWidth(e) {
   const { target: { textLength } } = e;
   if (textLength > 4) {
-    alert("Book Can't Have More than 4 digits in Pages"); // eslint-disable-line no-alert
     e.target.value = '';
   }
 }
@@ -93,7 +95,20 @@ function render() {
   });
 }
 
-
+/** Added the book to local sotrage */
+function addBookToLibrary() {
+  const inputs = document.getElementById('bookSubmit');
+  const book = new Book();
+  Object.keys(book).forEach(key => {
+    if (key !== 'isReaded' && key !== 'id') {
+      book[key] = inputs[key].value;
+    } else if (key === 'id') {
+      book[key] = myLibrary.length + 1
+    }
+  });
+  myLibrary.push(book)
+  localStorage.setItem('library', JSON.stringify(myLibrary))
+}
 
 /** Creat a form on click  */
 function formCreator() {
@@ -136,20 +151,6 @@ function formCreator() {
     mainContainer.appendChild(form);
     document.body.insertBefore(mainContainer, library[0]);
   }
-}
-
-function addBookToLibrary() {
-  const inputs = document.getElementById('bookSubmit');
-  const book = new Book();
-  Object.keys(book).forEach(key => {
-    if (key !== 'isReaded' && key !== 'id') {
-      book[key] = inputs[key].value;
-    } else if (key === 'id'){
-      book[key] = myLibrary.length + 1
-    }
-  });
-  myLibrary.push(book)
-  localStorage.setItem('library',JSON.stringify(myLibrary))
 }
 
 /** On Load Properties  */
