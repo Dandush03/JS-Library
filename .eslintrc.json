@@ -13,5 +13,15 @@
       "no-shadow": "off",
       "no-param-reassign": "off",
       "arrow-parens": "off"
-    }
+    },
+    
+    "overrides": [
+      {
+        "files": ["bin/*.js", "lib/*.js"],
+        "excludedFiles": "*.config.js",
+        "rules": {
+          "quotes": ["error", "single"]
+        }
+      }
+    ]
   }
