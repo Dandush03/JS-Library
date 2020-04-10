@@ -20,7 +20,7 @@ function render() {
       spanValue.innerText = value;
       mainContainer.appendChild(spanValue);
     });
-    counter++;
+    counter += 1;
     document.getElementById('display').appendChild(mainContainer);
   });
 }
