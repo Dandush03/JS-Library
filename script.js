@@ -38,8 +38,8 @@ function seeds() {
   b1 = new Book();
   b1.author = 'Charles Webster Leadbeater';
   b1.title = 'Occult Chemistry';
-  b1.numberOfPages = 114;
-  b1.isReaded = true;
+  b1.numberOfPages = 114
+  b1.isReaded = true
   myLibrary.push(b1);
 }
 
