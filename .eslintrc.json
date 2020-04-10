@@ -14,5 +14,13 @@
     "no-param-reassign": "off",
     "eol-last": "off",
     "arrow-parens": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["stylelint.config.js"],
+      "rules": {
+        "no-unused-expressions": "off"
+      }
+    }
+  ]
 }
