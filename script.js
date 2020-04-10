@@ -10,11 +10,15 @@ function Book() {
   this.isReaded = 'on';
 }
 
+function isNumber(obj) {
+  return obj !== undefined && typeof(obj) === 'number' && !isNaN(obj)
+}
+
 function changeStatus(obj) {
   let { target: { id } } = obj;
   id = id.split('-');
-  id = id[2];
-  console.log(id);
+  id = id.pop()
+  console.log(id)
 }
 
 /** Render all Array Elements */
