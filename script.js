@@ -1,6 +1,7 @@
-/** Array of Books  */
 //localStorage.removeItem('library')
-let myLibrary
+
+/** Array of Books  */
+let myLibrary;
 const localLibrary = localStorage.getItem('library');
 
 /** Generate an Empty Book  */
