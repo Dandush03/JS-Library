@@ -17,7 +17,7 @@
   },
   "overrides": [
     {
-      "files": ["stylelint.config"],
+      "files": ["stylelint.config.js"],
       "rules": {
         "quotes": [2, "single", { "avoidEscape": true }]
       }
