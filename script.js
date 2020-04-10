@@ -102,5 +102,5 @@ function formCreator() {
 window.onload = () => {
   seeds();
   render();
-  formCreator()
+  formCreator();
 };
