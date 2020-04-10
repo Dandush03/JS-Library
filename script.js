@@ -8,32 +8,11 @@ function Book() {
   this.isReaded = 'on';
 }
 
-function elementCreator(parent, obj) {
-  let span = document.createElement('span');
-  span.appendChild(document.createTextNode(obj));
-  parent.appendChild(span);
-}
-
-function rowCreator(book, index) {
-  const container = document.createElement('div');
-  container.id = `book-${(index + 1)}`;
-  for (const c in book) {
-    if (book[c] != null) {
-      elementCreator(container, book[c]);
-    } else {
-      myLibrary.pop(book);
-      rowCreator(book, index)
-    }
-  }
-  document.getElementById('display').appendChild(container);
-}
-
-/** Nest all array element inside the div */
 function render() {
-  let i = 0;
-  for (const obj in myLibrary) {
-    rowCreator(myLibrary[obj],i);
-    i++;
+  for (obj in myLibrary) {
+    if (Object.prototype.hasOwnProperty.call(myLibrary,obj)) {
+      console.log(obj)
+    }
   }
 }
 
@@ -57,7 +36,6 @@ function seeds() {
 
 window.onload = () => {
   seeds();
-  render();
-  const form = document.getElementById('bookForm');
-  form.addEventListener('submit', addBookToLibrary);
+  console.log(myLibrary)
+  render()
 };
