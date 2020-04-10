@@ -9,6 +9,7 @@
     "sourceType": "module"
   },
   "extends": ["airbnb-base"],
+  "ignorePatterns": [".stylelint.config.js"],
   "rules": {
     "no-shadow": "off",
     "no-param-reassign": "off",
