@@ -10,8 +10,11 @@ function Book() {
 
 
 function render() {
-  myLibrary.forEach(element => {
-    console.log(element)
+  myLibrary.forEach(obj => {
+    console.log(obj)
+    Object.values(obj).forEach(value => {
+      console.log(value)
+    });
   });
 }
 
