@@ -13,8 +13,8 @@ function Book() {
 function changeStatus(obj) {
   let { target: { id } } = obj;
   id = id.split('-');
-  id = id.pop()
-  console.log(id)
+  id = id.pop();
+  console.log(id);
 }
 
 /** Render all Array Elements */
