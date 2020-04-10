@@ -3,10 +3,10 @@ const myLibrary = [];
 
 /** Generate an Empty Book  */
 function Book() {
-  this.index = 1;
-  this.author = 'test';
+  this.id = 1;
+  this.input = 'test';
   this.title = 'test';
-  this.numberOfPages = 123;
+  this.pages = 123;
   this.isReaded = 'on';
 }
 
@@ -16,7 +16,7 @@ function changeStatus(e) {
   id = id.split('-');
   id = Number(id.pop());
   myLibrary.forEach(obj => {
-    const { index: bookId, isReaded: read } = obj;
+    const { id: bookId, isReaded: read } = obj;
     if (bookId === id) {
       const { target } = e;
       if (read === 'Readed') {
@@ -28,6 +28,14 @@ function changeStatus(e) {
       }
     }
   });
+}
+
+function maxWidth(e) {
+  let { target: { textLength, value } } = e;
+  if (textLength > 4) {
+    alert("Book Can't Have More than 4 digits in Pages")
+    e.target.value = ''
+  }
 }
 
 /** Render all Array Elements */
@@ -60,47 +68,71 @@ function render() {
 /** Generate first 2 values of DB  */
 function seeds() {
   let b1 = new Book();
-  b1.index = 1;
-  b1.author = 'William Walker Atkinson';
+  b1.id = 1;
+  b1.input = 'William Walker Atkinson';
   b1.title = 'Le Kybalion';
-  b1.numberOfPages = 233;
+  b1.pages = 233;
   b1.isReaded = 'Readed';
   myLibrary.push(b1);
 
   b1 = new Book();
-  b1.index = 2;
-  b1.author = 'Charles Webster Leadbeater';
+  b1.id = 2;
+  b1.input = 'Charles Webster Leadbeater';
   b1.title = 'Occult Chemistry';
-  b1.numberOfPages = 114;
+  b1.pages = 114;
   b1.isReaded = 'Readed';
   myLibrary.push(b1);
 }
 
 /** Creat a form on click  */
 function formCreator() {
-  const book = new Book();
-  const mainContainer = document.createElement('div');
-  mainContainer.setAttribute('class', 'container');
-  const form = document.createElement('form');
-  Object.keys(book).forEach(key => {
-    const wrapper = document.createElement('div');
-    const lblAuthor = document.createElement('label');
-    lblAuthor.setAttribute('for', key);
-    lblAuthor.innerText = key;
-    wrapper.appendChild(lblAuthor);
-    const author = document.createElement('input');
-    author.setAttribute('name', key);
-    wrapper.appendChild(author);
-    form.appendChild(wrapper);
-  });
-  const library = document.getElementsByClassName('container');
-  mainContainer.appendChild(form);
-  document.body.insertBefore(mainContainer, library[0]);
+  const chkForm = document.getElementById('bookSubmit');
+  if (!chkForm) {
+    const book = new Book();
+    const mainContainer = document.createElement('div');
+    mainContainer.setAttribute('class', 'container');
+    const form = document.createElement('form');
+    form.id = 'bookSubmit';
+    const formTitle = document.createElement('h2');
+    formTitle.innerText = 'Which Book You Want to Add?';
+    form.appendChild(formTitle);
+    Object.keys(book).forEach(key => {
+      if (key !== 'isReaded' && key !== 'id') {
+        const wrapper = document.createElement('div');
+        const lbl = document.createElement('label');
+        lbl.setAttribute('for', key);
+        lbl.innerText = key;
+        wrapper.appendChild(lbl);
+        const input = document.createElement('input');
+        input.setAttribute('name', key);
+        if (key !== 'pages') {
+          input.setAttribute('type', 'text');
+        } else {
+          input.setAttribute('type', 'number');
+          input.oninput = maxWidth;
+        }
+        wrapper.appendChild(input);
+        form.appendChild(wrapper);
+      }
+    });
+    const submitDiv = document.createElement('div');
+    const frmSubmit = document.createElement('button');
+    frmSubmit.innerText = 'Submit';
+    submitDiv.appendChild(frmSubmit);
+    form.appendChild(submitDiv);
+    const library = document.getElementsByClassName('container');
+    mainContainer.appendChild(form);
+    document.body.insertBefore(mainContainer, library[0]);
+  }
+}
+
+function addBookToLibrary() {
+
 }
 
 /** On Load Properties  */
 window.onload = () => {
   seeds();
   render();
-  formCreator();
+  document.getElementById('createForm').onclick = formCreator
 };
