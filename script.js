@@ -43,10 +43,8 @@ function seeds() {
   myLibrary.push(b1);
 }
 
-
-
 /** On Load Properties  */
 window.onload = () => {
-  seeds();
-  render();
+  seeds()
+  render()
 };
