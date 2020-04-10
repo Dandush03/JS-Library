@@ -19,7 +19,7 @@
     {
       "files": ["stylelint.config.js"],
       "rules": {
-        "no-unused-expressions": "off"
+        "allowTemplateLiterals": "false"
       }
     }
   ]
