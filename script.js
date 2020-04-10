@@ -10,21 +10,21 @@ function Book() {
 
 function rowCreator(book, index) {
   const container = document.createElement('div');
-    container.id = `book-${(index + 1)}`;
-    for (const c in book) {
-      if (book[c] != null) {
-        elementCreator(container, book[c]);
-      } else {
-        myLibrary.pop(book);
-        render();
-      }
+  container.id = `book-${(index + 1)}`;
+  for (const c in book) {
+    if (book[c] != null) {
+      elementCreator(container, book[c]);
+    } else {
+      myLibrary.pop(book);
+      render();
     }
-    document.getElementById('display').appendChild(container);
   }
+  document.getElementById('display').appendChild(container);
+}
 
 /** Nest all array element inside the div */
 function render() {
-  myLibrary.forEach(rowCreator(book,index))
+  myLibrary.forEach(rowCreator(book, index))
 }
 
 /** Add Book to Array  */
