@@ -1,9 +1,10 @@
-{
+{  
   "env": {
     "browser": true,
     "es6": true,
     "jest": true
   },
+  "eslintIgnore": ["stylelint.config.js"],
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module"
@@ -14,13 +15,6 @@
     "no-param-reassign": "off",
     "eol-last": "off",
     "arrow-parens": "off"
-  },
-  "overrides": [
-    {
-      "files": ["stylelint.config.js"],
-      "rules": {
-        "quotes": [2, "single", { "avoidEscape": true }]
-      }
-    }
-  ]
+  }
 }
+
