@@ -10,14 +10,10 @@ function Book() {
   this.isReaded = 'on';
 }
 
-function changeStatus(obj) {
-  let id = obj.getAttribute('name');
-  let status = (obj.innerText.split('\n'))[4];
-  status = status;
-  id = id.split('-');
-  id = id[1];
+function changeStatus() {
+  let id = this.getAttribute('id');
+  id = (id.split('-'))[2];
   console.log(id);
-  console.log(status);
 }
 
 /** Render all Array Elements */
@@ -28,13 +24,13 @@ function render() {
     mainContainer.setAttribute('name', `book-${counter}`);
     mainContainer.setAttribute('class', 'book');
     Object.values(obj).forEach(value => {
-      if (value == 'Readed' || value == 'Not Readed') {
+      if (value === 'Readed' || value === 'Not Readed') {
         const btn = document.createElement('button');
         btn.innerText = value;
         btn.id = `btn-${mainContainer.getAttribute('name')}`;
         mainContainer.appendChild(btn);
-        mainContainer.setAttribute('onClick', 'changeStatus(this)');
-       } else {
+        btn.onclick = changeStatus;
+      } else {
         const spanValue = document.createElement('span');
         spanValue.innerText = value;
         mainContainer.appendChild(spanValue);
@@ -63,8 +59,6 @@ function seeds() {
   b1.isReaded = 'Readed';
   myLibrary.push(b1);
 }
-
-
 
 /** On Load Properties  */
 window.onload = () => {
