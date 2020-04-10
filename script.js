@@ -8,12 +8,11 @@ function Book() {
   this.isReaded = 'on';
 }
 
+
 function render() {
-  for (const obj in myLibrary) {
-    if ({}.hasOwnProperty.call(myLibrary, obj)) {
-      console.log(obj);
-    }
-  }
+  myLibrary.forEach(element => {
+    console.log(element)
+  });
 }
 
 /** Generate first 2 values of DB  */
