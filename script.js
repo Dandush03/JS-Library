@@ -10,9 +10,11 @@ function Book() {
   this.isReaded = 'on';
 }
 
-function changeStatus() {
-  id = (id.split('-'))[2];
-  console.log(foo);
+function changeStatus(obj) {
+  let id = obj.target.id;
+  id = id.split('-');
+  id = id[2];
+  console.log(id);
 }
 
 /** Render all Array Elements */
