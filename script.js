@@ -8,6 +8,12 @@ function Book() {
   this.isReaded = 'on';
 }
 
+function elementCreator(parent, obj) {
+  let span = document.createElement('span');
+  span.appendChild(document.createTextNode(obj));
+  parent.appendChild(span);
+}
+
 function rowCreator(book, index) {
   const container = document.createElement('div');
   container.id = `book-${(index + 1)}`;
@@ -16,7 +22,7 @@ function rowCreator(book, index) {
       elementCreator(container, book[c]);
     } else {
       myLibrary.pop(book);
-      render();
+      rowCreator(book, index)
     }
   }
   document.getElementById('display').appendChild(container);
@@ -24,22 +30,11 @@ function rowCreator(book, index) {
 
 /** Nest all array element inside the div */
 function render() {
-  myLibrary.forEach(rowCreator(book, index))
-}
-
-/** Add Book to Array  */
-function addBookToLibrary() {
-  const form = document.forms.bookForm;
-  const book = new Book();
-  book.author = form.author.value;
-  book.title = form.title.value;
-  book.numberOfPages = form.pages.value;
-  book.isReaded = form.readed.value;
-  myLibrary.push(book);
-  const mainContainer = document.getElementById('display');
-  form.reset();
-  mainContainer.innerHTML = '';
-  render();
+  let i = 0;
+  for (const obj in myLibrary) {
+    rowCreator(myLibrary[obj],i);
+    i++;
+  }
 }
 
 /** Generate first 2 values of DB  */
