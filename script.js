@@ -16,10 +16,11 @@ function changeStatus(obj) {
   id = id.split('-');
   id = id.pop();
   const test = myLibrary.forEach(obj => {
-    let {index: bookId, isReaded: read } = obj
-    if (bookId == id)
-    {
-      obj.isReaded = 'test'
+    let { index: bookId, isReaded: read } = obj;
+    if (bookId === id) {
+      if (read === 'Readed') {
+        obj.isReaded = 'test';
+      }
     }
   });
 }
