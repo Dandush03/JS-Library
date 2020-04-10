@@ -1,13 +1,40 @@
 /** Array of Books  */
-const myLibrary = [];
+//localStorage.removeItem('library')
+let myLibrary
+localLibrary = localStorage.getItem('library');
+if (localLibrary === null) {
+  /** Generate first 2 values of DB  */
+  function seeds() {
+    let b1 = new Book();
+    b1.id = 1;
+    b1.author = 'William Walker Atkinson';
+    b1.title = 'Le Kybalion';
+    b1.pages = 233;
+    b1.isReaded = 'Readed';
+    myLibrary.push(b1);
+
+    b1 = new Book();
+    b1.id = 2;
+    b1.author = 'Charles Webster Leadbeater';
+    b1.title = 'Occult Chemistry';
+    b1.pages = 114;
+    b1.isReaded = 'Readed';
+    myLibrary.push(b1);
+  }
+  myLibrary = [];
+  seeds();
+  localStorage.setItem('library',JSON.stringify(myLibrary))
+} else {
+  myLibrary = JSON.parse(localStorage.getItem('library'));
+}
 
 /** Generate an Empty Book  */
 function Book() {
   this.id = 1;
-  this.input = 'test';
-  this.title = 'test';
+  this.author = 'localLibrary';
+  this.title = 'localLibrary';
   this.pages = 123;
-  this.isReaded = 'on';
+  this.isReaded = 'Pending';
 }
 
 /** Changes Book Status */
@@ -27,6 +54,7 @@ function changeStatus(e) {
         target.innerText = 'Readed';
       }
     }
+    localStorage.setItem('library',JSON.stringify(myLibrary))
   });
 }
 
@@ -46,7 +74,7 @@ function render() {
     mainContainer.setAttribute('name', `book-${counter}`);
     mainContainer.setAttribute('class', 'book');
     Object.values(obj).forEach(value => {
-      if (value === 'Readed' || value === 'Not Readed') {
+      if (value === 'Readed' || value === 'Pending') {
         const btn = document.createElement('button');
         btn.innerText = value;
         btn.id = `btn-${mainContainer.getAttribute('name')}`;
@@ -65,24 +93,7 @@ function render() {
   });
 }
 
-/** Generate first 2 values of DB  */
-function seeds() {
-  let b1 = new Book();
-  b1.id = 1;
-  b1.input = 'William Walker Atkinson';
-  b1.title = 'Le Kybalion';
-  b1.pages = 233;
-  b1.isReaded = 'Readed';
-  myLibrary.push(b1);
 
-  b1 = new Book();
-  b1.id = 2;
-  b1.input = 'Charles Webster Leadbeater';
-  b1.title = 'Occult Chemistry';
-  b1.pages = 114;
-  b1.isReaded = 'Readed';
-  myLibrary.push(b1);
-}
 
 /** Creat a form on click  */
 function formCreator() {
@@ -90,7 +101,7 @@ function formCreator() {
   if (!chkForm) {
     const book = new Book();
     const mainContainer = document.createElement('div');
-    mainContainer.setAttribute('class', 'container');
+    mainContainer.setAttribute('class', 'container form');
     const form = document.createElement('form');
     form.id = 'bookSubmit';
     const formTitle = document.createElement('h2');
@@ -118,6 +129,7 @@ function formCreator() {
     const submitDiv = document.createElement('div');
     const frmSubmit = document.createElement('button');
     frmSubmit.innerText = 'Submit';
+    form.onsubmit = addBookToLibrary
     submitDiv.appendChild(frmSubmit);
     form.appendChild(submitDiv);
     const library = document.getElementsByClassName('container');
@@ -127,12 +139,21 @@ function formCreator() {
 }
 
 function addBookToLibrary() {
-
+  const inputs = document.getElementById('bookSubmit');
+  const book = new Book();
+  Object.keys(book).forEach(key => {
+    if (key !== 'isReaded' && key !== 'id') {
+      book[key] = inputs[key].value;
+    } else if (key === 'id'){
+      book[key] = myLibrary.length + 1
+    }
+  });
+  myLibrary.push(book)
+  localStorage.setItem('library',JSON.stringify(myLibrary))
 }
 
 /** On Load Properties  */
 window.onload = () => {
-  seeds();
   render();
   document.getElementById('createForm').onclick = formCreator;
 };

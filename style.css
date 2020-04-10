@@ -29,6 +29,7 @@ body {
   background-color: whitesmoke;
   display: flex;
   flex-direction: column;
+  border: #b38e7f double 8px;
 }
 
 .container > h2 {
@@ -90,7 +91,12 @@ body {
   margin: 10px;
 }
 
-.background + .container {
+form > h2 {
+  text-align: center;
+  font-size: large;
+}
+
+.form {
   max-width: 500px;
 }
 
@@ -99,11 +105,6 @@ form {
   margin: 30px auto;
   background-color: white;
   border: #b38e7f double 8px;
-}
-
-form > h2 {
-  text-align: center;
-  font-size: large;
 }
 
 form > div {
