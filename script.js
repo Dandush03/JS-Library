@@ -13,10 +13,10 @@ function Book() {
 function render() {
   let counter = 1;
   myLibrary.forEach(obj,key => {
-    const mainContainer = document.createElement('div');
-    mainContainer.setAttribute('name', `book-${counter}`);
-    mainContainer.setAttribute('class', 'book');
-    Object.values(obj).forEach(value => {
+    const mainContainer = document.createElement('div')
+    mainContainer.setAttribute('name', `book-${counter}`)
+    mainContainer.setAttribute('class', 'book')
+    Object.values(obj).forEach(value => 
       const spanValue = document.createElement('span');
       spanValue.innerText = value;
       mainContainer.appendChild(spanValue);
