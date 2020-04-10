@@ -2,8 +2,6 @@
 //localStorage.removeItem('library')
 let myLibrary
 localLibrary = localStorage.getItem('library');
-
-/** Check if Local storage exits */
 if (localLibrary === null) {
   /** Generate first 2 values of DB  */
   function seeds() {
@@ -60,10 +58,10 @@ function changeStatus(e) {
   });
 }
 
-/** Check for max length */
 function maxWidth(e) {
   const { target: { textLength } } = e;
   if (textLength > 4) {
+    alert("Book Can't Have More than 4 digits in Pages"); // eslint-disable-line no-alert
     e.target.value = '';
   }
 }
@@ -95,7 +93,6 @@ function render() {
   });
 }
 
-/** Added the book to local sotrage */
 function addBookToLibrary() {
   const inputs = document.getElementById('bookSubmit');
   const book = new Book();
