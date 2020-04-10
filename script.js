@@ -10,6 +10,16 @@ function Book() {
   this.isReaded = 'on';
 }
 
+function changeStatus(obj) {
+  let id = obj.getAttribute('name');
+  let status = (obj.innerText.split('\n'))[4];
+  status = status;
+  id = id.split('-');
+  id = id[1];
+  console.log(id);
+  console.log(status);
+}
+
 /** Render all Array Elements */
 function render() {
   let counter = 1;
@@ -18,9 +28,17 @@ function render() {
     mainContainer.setAttribute('name', `book-${counter}`);
     mainContainer.setAttribute('class', 'book');
     Object.values(obj).forEach(value => {
-      const spanValue = document.createElement('span');
-      spanValue.innerText = value;
-      mainContainer.appendChild(spanValue);
+      if (value == 'Readed' || value == 'Not Readed') {
+        const btn = document.createElement('button');
+        btn.innerText = value;
+        btn.id = `btn-${mainContainer.getAttribute('name')}`;
+        mainContainer.appendChild(btn);
+        mainContainer.setAttribute('onClick', 'changeStatus(this)');
+       } else {
+        const spanValue = document.createElement('span');
+        spanValue.innerText = value;
+        mainContainer.appendChild(spanValue);
+      }
     });
     counter += 1;
     document.getElementById('display').appendChild(mainContainer);
@@ -34,7 +52,7 @@ function seeds() {
   b1.author = 'William Walker Atkinson';
   b1.title = 'Le Kybalion';
   b1.numberOfPages = 233;
-  b1.isReaded = true;
+  b1.isReaded = 'Readed';
   myLibrary.push(b1);
 
   b1 = new Book();
@@ -42,9 +60,11 @@ function seeds() {
   b1.author = 'Charles Webster Leadbeater';
   b1.title = 'Occult Chemistry';
   b1.numberOfPages = 114;
-  b1.isReaded = true;
+  b1.isReaded = 'Readed';
   myLibrary.push(b1);
 }
+
+
 
 /** On Load Properties  */
 window.onload = () => {
