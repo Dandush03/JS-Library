@@ -10,11 +10,18 @@ function Book() {
   this.isReaded = 'on';
 }
 
+
 function changeStatus(obj) {
   let { target: { id } } = obj;
   id = id.split('-');
   id = id.pop();
-  console.log(id);
+  const test = myLibrary.forEach(obj => {
+    let {index: bookId, isReaded: read } = obj
+    if (bookId == id)
+    {
+      obj.isReaded = 'test'
+    }
+  });
 }
 
 /** Render all Array Elements */
