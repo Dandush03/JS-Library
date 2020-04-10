@@ -10,7 +10,7 @@ function Book() {
 
 function render() {
   for (const obj in myLibrary) {
-    if (Object.prototype.hasOwnProperty.call(myLibrary,obj)) {
+    if ({}.hasOwnProperty.call(myLibrary, obj)) {
       console.log(obj);
     }
   }
