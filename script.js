@@ -8,10 +8,21 @@ function Book() {
   this.isReaded = 'on';
 }
 
-function render() {
-  myLibrary.forEach(function(book, index) {
+myLibrary.forEach(function(book, index) {
+  const container = document.createElement('div');
+  container.id = `book-${(index + 1)}`;
+  for (const c in book) {
+    if (book[c] != null) {
+      elementCreator(container, book[c]);
+    } else {
+      myLibrary.pop(book);
+      render();
+    }
+  }
+});
 
-  })
+function render() {
+  
 };
 
 
