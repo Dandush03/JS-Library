@@ -1,6 +1,7 @@
 /** Array of Books  */
 //localStorage.removeItem('library')
 let myLibrary
+const localLibrary = localStorage.getItem('library');
 
 /** Generate an Empty Book  */
 function Book() {
@@ -11,7 +12,6 @@ function Book() {
   this.isReaded = 'Pending';
 }
 
-localLibrary = localStorage.getItem('library');
 if (localLibrary === null) {
   /** Generate first 2 values of DB  */
   function seeds() {
