@@ -45,7 +45,7 @@ body {
   padding: 10px;
 }
 
-.book-title.book{
+.book-title.book {
   background-color: #834932;
   color: #ffcab5;
 }
@@ -69,7 +69,7 @@ body {
   padding: 10px;
 }
 
-.book>span:last-child {
+.book > span:last-child {
   width: 140px;
 }
 

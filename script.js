@@ -18,17 +18,16 @@ function changeStatus(e) {
   myLibrary.forEach(obj => {
     const { index: bookId, isReaded: read } = obj;
     if (bookId === id) {
-      let { target } = e;
+      const { target } = e;
       if (read === 'Readed') {
         obj.isReaded = 'Pending';
-        target.innerText = 'Pending'
-      }else {
+        target.innerText = 'Pending';
+      } else {
         obj.isReaded = 'Readed';
-        target.innerText = 'Readed'
+        target.innerText = 'Readed';
       }
     }
   });
-  console.log(myLibrary)
 }
 
 /** Render all Array Elements */
