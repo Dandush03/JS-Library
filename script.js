@@ -17,7 +17,7 @@ function changeStatus(obj) {
   id = id.pop();
   myLibrary.forEach(obj => {
     const { index: bookId, isReaded: read } = obj;
-    if (bookId === id) {
+    if (bookId == id) {
       if (read === 'Readed') {
         obj.isReaded = 'test';
       }
