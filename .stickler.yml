@@ -5,6 +5,7 @@ linters:
     
     # indicate where is the config file for stylelint
     config: './.eslintrc.json'
+    ignore_file: 'stylelint.config.js'
     
   stylelint:
     # indicate where is the config file for stylelint
@@ -14,7 +15,6 @@ linters:
 files:
   ignore:
       - 'dist/*'
-      - 'stylelint.config.js'
 
 # PLEASE DO NOT enable auto fixing options
 # if you need extra support from you linter - do it in your local env as described in README for this config
