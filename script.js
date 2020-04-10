@@ -8,28 +8,8 @@ function Book() {
   this.isReaded = 'on';
 }
 
-myLibrary.forEach(function(book, index) {
+function rowCreator(book, index) {
   const container = document.createElement('div');
-  container.id = `book-${(index + 1)}`;
-  for (const c in book) {
-    if (book[c] != null) {
-      elementCreator(container, book[c]);
-    } else {
-      myLibrary.pop(book);
-      render();
-    }
-  }
-});
-
-function render() {
-  
-};
-
-
-/** Nest all array element inside the div */
-/* function render() {
-  myLibrary.forEach(function(book, index) {
-    const container = document.createElement('div');
     container.id = `book-${(index + 1)}`;
     for (const c in book) {
       if (book[c] != null) {
@@ -39,10 +19,13 @@ function render() {
         render();
       }
     }
-
     document.getElementById('display').appendChild(container);
-  });
-} */
+  }
+
+/** Nest all array element inside the div */
+function render() {
+  myLibrary.forEach(rowCreator(book,index))
+}
 
 /** Add Book to Array  */
 function addBookToLibrary() {
