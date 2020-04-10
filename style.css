@@ -2,16 +2,6 @@
   box-sizing: border-box;
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-input[type="number"] {
-  -moz-appearance: textfield;
-}
-
 body {
   margin: 0;
   padding: 0;
@@ -111,7 +101,7 @@ form {
   border: #b38e7f double 8px;
 }
 
-form h2 {
+form > h2 {
   text-align: center;
   font-size: large;
 }
@@ -132,4 +122,14 @@ label {
 input {
   width: 250px;
   height: 40px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }

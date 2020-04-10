@@ -31,10 +31,10 @@ function changeStatus(e) {
 }
 
 function maxWidth(e) {
-  let { target: { textLength, value } } = e;
+  const { target: { textLength } } = e;
   if (textLength > 4) {
-    alert("Book Can't Have More than 4 digits in Pages")
-    e.target.value = ''
+    alert("Book Can't Have More than 4 digits in Pages"); // eslint-disable-line no-alert
+    e.target.value = '';
   }
 }
 
@@ -134,5 +134,5 @@ function addBookToLibrary() {
 window.onload = () => {
   seeds();
   render();
-  document.getElementById('createForm').onclick = formCreator
+  document.getElementById('createForm').onclick = formCreator;
 };
