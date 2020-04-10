@@ -12,7 +12,7 @@ function Book() {
 /** Render all Array Elements */
 function render() {
   let counter = 1;
-  myLibrary.forEach(obj => {
+  myLibrary.forEach(obj,key => {
     const mainContainer = document.createElement('div');
     mainContainer.setAttribute('name', `book-${counter}`);
     mainContainer.setAttribute('class', 'book');
@@ -45,6 +45,6 @@ function seeds() {
 
 /** On Load Properties  */
 window.onload = () => {
-  seeds()
-  render()
+  seeds();
+  render();
 };
