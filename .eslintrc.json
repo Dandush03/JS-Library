@@ -19,7 +19,7 @@
     {
       "files": ["stylelint.config.js"],
       "rules": {
-        "allowTemplateLiterals": "false"
+        "allowTemplateLiterals": "off"
       }
     }
   ]
