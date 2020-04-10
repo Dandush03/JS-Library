@@ -31,24 +31,8 @@ function render() {
         render();
       }
     }
-
     document.getElementById('display').appendChild(container);
   });
-}
-
-/** Add Book to Array  */
-function addBookToLibrary() {
-  const form = document.forms.bookForm;
-  const book = new Book();
-  book.author = form.author.value;
-  book.title = form.title.value;
-  book.numberOfPages = form.pages.value;
-  book.isReaded = form.readed.value;
-  myLibrary.push(book);
-  const mainContainer = document.getElementById('display');
-  form.reset();
-  mainContainer.innerHTML = '';
-  render();
 }
 
 /** Generate first 2 values of DB  */
@@ -68,10 +52,7 @@ function seeds() {
   myLibrary.push(b1);
 }
 
-
 window.onload = () => {
   seeds();
   render();
-  const form = document.getElementById('bookForm');
-  form.addEventListener('submit', addBookToLibrary);
 };
