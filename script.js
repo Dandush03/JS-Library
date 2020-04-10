@@ -3,7 +3,7 @@ const myLibrary = [];
 
 /** Generate an Empty Book  */
 function Book() {
-  this.index = 1
+  this.index = 1;
   this.author = 'test';
   this.title = 'test';
   this.numberOfPages = 123;
@@ -30,7 +30,7 @@ function render() {
 /** Generate first 2 values of DB  */
 function seeds() {
   let b1 = new Book();
-  b1.index = 1
+  b1.index = 1;
   b1.author = 'William Walker Atkinson';
   b1.title = 'Le Kybalion';
   b1.numberOfPages = 233;
@@ -38,7 +38,7 @@ function seeds() {
   myLibrary.push(b1);
 
   b1 = new Book();
-  b1.index = 2
+  b1.index = 2;
   b1.author = 'Charles Webster Leadbeater';
   b1.title = 'Occult Chemistry';
   b1.numberOfPages = 114;
