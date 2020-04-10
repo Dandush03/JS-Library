@@ -11,9 +11,8 @@ function Book() {
 }
 
 function changeStatus() {
-  let id = this.getAttribute('id');
   id = (id.split('-'))[2];
-  console.log(id);
+  console.log(foo);
 }
 
 /** Render all Array Elements */
