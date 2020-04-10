@@ -1,27 +1,22 @@
 {
-    "env": {
-      "browser": true,
-      "es6": true,
-      "jest": true
-    },
-    "parserOptions": {
-      "ecmaVersion": 2018,
-      "sourceType": "module"
-    },
-    "extends": ["airbnb-base"],
-    "rules": {
-      "no-shadow": "off",
-      "no-param-reassign": "off",
-      "arrow-parens": "off"
-    },
-    
-    "overrides": [
-      {
-        "files": ["bin/*.js", "lib/*.js"],
-        "excludedFiles": "*.config.js",
-        "rules": {
-          "quotes": ["error", "single"]
-        }
-      }
-    ]
+  "ignorePatterns": [
+    "*.config.js"
+  ],
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "extends": [
+    "airbnb-base"
+  ],
+  "rules": {
+    "no-shadow": "off",
+    "no-param-reassign": "off",
+    "arrow-parens": "off"
   }
+}
