@@ -10,10 +10,6 @@ function Book() {
   this.isReaded = 'on';
 }
 
-function isNumber(obj) {
-  return obj !== undefined && typeof(obj) === 'number' && !isNaN(obj)
-}
-
 function changeStatus(obj) {
   let { target: { id } } = obj;
   id = id.split('-');
