@@ -14,6 +14,7 @@ function changeStatus(obj) {
   let { target: { id } } = obj;
   id = id.split('-');
   id = id[2];
+  console.log(id);
 }
 
 /** Render all Array Elements */
