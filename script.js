@@ -11,10 +11,9 @@ function Book() {
 }
 
 function changeStatus(obj) {
-  let id = obj.target.id;
+  let { target: { id } } = obj;
   id = id.split('-');
   id = id[2];
-  console.log(id);
 }
 
 /** Render all Array Elements */
