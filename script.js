@@ -10,11 +10,18 @@ function Book() {
 
 
 function render() {
+  let counter = 1;
   myLibrary.forEach(obj => {
-    console.log(obj)
+    const mainContainer = document.createElement('div');
+    mainContainer.setAttribute('name', `book-${counter}`);
+    console.log(mainContainer.tagName)
     Object.values(obj).forEach(value => {
-      console.log(value)
+      const spanValue = document.createElement('span');
+      spanValue.innerText = value
+      mainContainer.appendChild(spanValue);
     });
+    counter++;
+    document.getElementById('display').appendChild(mainContainer);
   });
 }
 
