@@ -1,4 +1,4 @@
-//localStorage.removeItem('library')
+// localStorage.removeItem('library')
 
 /** Array of Books  */
 let myLibrary;
@@ -13,25 +13,26 @@ function Book() {
   this.isReaded = 'Pending';
 }
 
-if (localLibrary === null) {
-  /** Generate first 2 values of DB  */
-  function seeds() {
-    let b1 = new Book();
-    b1.id = 1;
-    b1.author = 'William Walker Atkinson';
-    b1.title = 'Le Kybalion';
-    b1.pages = 233;
-    b1.isReaded = 'Readed';
-    myLibrary.push(b1);
+/** Generate first 2 values of DB  */
+function seeds() {
+  let b1 = new Book();
+  b1.id = 1;
+  b1.author = 'William Walker Atkinson';
+  b1.title = 'Le Kybalion';
+  b1.pages = 233;
+  b1.isReaded = 'Readed';
+  myLibrary.push(b1);
 
-    b1 = new Book();
-    b1.id = 2;
-    b1.author = 'Charles Webster Leadbeater';
-    b1.title = 'Occult Chemistry';
-    b1.pages = 114;
-    b1.isReaded = 'Readed';
-    myLibrary.push(b1);
-  }
+  b1 = new Book();
+  b1.id = 2;
+  b1.author = 'Charles Webster Leadbeater';
+  b1.title = 'Occult Chemistry';
+  b1.pages = 114;
+  b1.isReaded = 'Readed';
+  myLibrary.push(b1);
+}
+
+if (localLibrary === null) {
   myLibrary = [];
   seeds();
   localStorage.setItem('library', JSON.stringify(myLibrary));
@@ -143,7 +144,7 @@ function formCreator() {
     const submitDiv = document.createElement('div');
     const frmSubmit = document.createElement('button');
     frmSubmit.innerText = 'Submit';
-    form.onsubmit = addBookToLibrary,
+    form.onsubmit = addBookToLibrary;
     submitDiv.appendChild(frmSubmit);
     form.appendChild(submitDiv);
     const library = document.getElementsByClassName('container');
