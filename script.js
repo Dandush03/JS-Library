@@ -78,25 +78,24 @@ function seeds() {
 
 /** Creat a form on click  */
 function formCreator() {
-  let book = new Book
+  const book = new Book();
   const mainContainer = document.createElement('div');
-  mainContainer.setAttribute('class', 'container')
+  mainContainer.setAttribute('class', 'container');
   const form = document.createElement('form');
-  for ( const key in book) {
-    const wrapper = document.createElement('div')
-    const lblAuthor = document.createElement('label')
-    lblAuthor.setAttribute('for', key)
-    lblAuthor.innerText = key
-    wrapper.appendChild(lblAuthor)
-    const author = document.createElement('input')
-    author.setAttribute('name', key)
-    wrapper.appendChild(author)
-    form.appendChild(wrapper)
-  };
-  const library = document.getElementsByClassName('container')
-  console.log(library)
-  mainContainer.appendChild(form)
-  document.body.insertBefore(mainContainer, library[0])
+  Object.keys(book).forEach(key => {
+    const wrapper = document.createElement('div');
+    const lblAuthor = document.createElement('label');
+    lblAuthor.setAttribute('for', key);
+    lblAuthor.innerText = key;
+    wrapper.appendChild(lblAuthor);
+    const author = document.createElement('input');
+    author.setAttribute('name', key);
+    wrapper.appendChild(author);
+    form.appendChild(wrapper);
+  });
+  const library = document.getElementsByClassName('container');
+  mainContainer.appendChild(form);
+  document.body.insertBefore(mainContainer, library[0]);
 }
 
 /** On Load Properties  */
