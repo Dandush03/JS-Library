@@ -45,11 +45,16 @@ body {
   padding: 10px;
 }
 
+.book-title.book{
+  background-color: #834932;
+  color: #ffcab5;
+}
+
 .book {
   background-color: white;
   margin: 0;
   display: grid;
-  grid-template-columns: 0.5fr 3fr 2fr 1fr 0.5fr;
+  grid-template-columns: 0.5fr 3fr 2fr 1fr 1fr;
 }
 
 .book:first-child {
@@ -62,6 +67,18 @@ body {
   border-top: none;
   text-align: center;
   padding: 10px;
+}
+
+.book>span:last-child {
+  width: 140px;
+}
+
+.book > button {
+  height: 80%;
+  align-self: center;
+  margin: auto;
+  display: flex;
+  align-content: center;
 }
 
 .book > span:first-child {

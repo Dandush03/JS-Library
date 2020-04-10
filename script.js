@@ -10,19 +10,25 @@ function Book() {
   this.isReaded = 'on';
 }
 
-
-function changeStatus(obj) {
-  let { target: { id } } = obj;
+/** Changes Book Status */
+function changeStatus(e) {
+  let { target: { id } } = e;
   id = id.split('-');
   id = Number(id.pop());
   myLibrary.forEach(obj => {
     const { index: bookId, isReaded: read } = obj;
     if (bookId === id) {
+      let { target } = e;
       if (read === 'Readed') {
-        obj.isReaded = 'test';
+        obj.isReaded = 'Pending';
+        target.innerText = 'Pending'
+      }else {
+        obj.isReaded = 'Readed';
+        target.innerText = 'Readed'
       }
     }
   });
+  console.log(myLibrary)
 }
 
 /** Render all Array Elements */
@@ -37,8 +43,10 @@ function render() {
         const btn = document.createElement('button');
         btn.innerText = value;
         btn.id = `btn-${mainContainer.getAttribute('name')}`;
-        mainContainer.appendChild(btn);
         btn.onclick = changeStatus;
+        const span = document.createElement('span');
+        span.appendChild(btn);
+        mainContainer.appendChild(span);
       } else {
         const spanValue = document.createElement('span');
         spanValue.innerText = value;
