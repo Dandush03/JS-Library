@@ -77,7 +77,7 @@ function deleteRow(e) {
   element = element.split('-');
   element = Number(element.pop());
 
-  index = 0
+  let index = 0
   const newLib = []
   myLibrary.forEach(obj => {
     const { id: bookId } = obj;
@@ -121,12 +121,12 @@ function render() {
         mainContainer.appendChild(spanValue);
       }
     });
-    delteDiv = document.createElement('div');
-    delteDiv.setAttribute('class', 'delete-div')
-    delteBtn = document.createElement('a');
+    const delteDiv = document.createElement('div');
+    delteDiv.setAttribute('class', 'delete-div');
+    const delteBtn = document.createElement('a');
     delteBtn.innerHTML = `<i id="row-${counter}" class="btn fas fa-backspace"></i>`;
     delteBtn.setAttribute('class', 'delete-btn');
-    delteBtn.onclick = deleteRow
+    delteBtn.onclick = deleteRow;
     delteDiv.appendChild(delteBtn);
     mainContainer.appendChild(delteDiv);
     counter += 1;

@@ -142,13 +142,13 @@ a {
 }
 
 path {
-  fill: #bb0000
+  fill: #b00;
 }
+
 input {
   width: 250px;
   height: 40px;
 }
-
 
 .delete-btn > i > .btn {
   height: 25px;
