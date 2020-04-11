@@ -62,30 +62,31 @@ function changeStatus(e) {
 }
 
 function deleteRow(e) {
-  let element
-  const { target: { nodeName } } = e
+  let element;
+  const { target: { nodeName } } = e;
   if (nodeName === 'svg') {
-    const { target: { parentNode: { id } } } = e
-    element = id
+    const { target: { parentNode: { id } } } = e;
+    element = id;
   } else if (nodeName === 'path') {
-    const { target: { parentNode: { parentNode: { id } } } } = e
-    element = id
+    const { target: { parentNode: { parentNode: { id } } } } = e;
+    element = id;
   } else {
-    const { target: { id } } = e
-    element = id
+    const { target: { id } } = e;
+    element = id;
   }
+  
   element = element.split('-');
   element = Number(element.pop());
 
-  let index = 0
-  const newLib = []
+  let index = 0;
+  const newLib = [];
   myLibrary.forEach(obj => {
     const { id: bookId } = obj;
     obj.id = index + 1;
     if (bookId != element) {
-      newLib.push(obj)
-      console.log(obj)
-      index += 1
+      newLib.push(obj);
+      console.log(obj);
+      index += 1;
     }
   });
   localStorage.setItem('library', JSON.stringify(newLib));
