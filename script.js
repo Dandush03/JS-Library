@@ -88,7 +88,7 @@ function deleteRow(e) {
     }
   });
   localStorage.setItem('library', JSON.stringify(newLib));
-  location.reload(); // eslint-disable-line sap-no-location-reload
+  location.reload(); // eslint-disable-line no-restricted-globals
 }
 
 function maxWidth(e) {
