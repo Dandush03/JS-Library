@@ -60,7 +60,7 @@ form > h2 {
   background-color: white;
   margin: 0;
   display: grid;
-  grid-template-columns: 0.5fr 3fr 2fr 1fr 1fr;
+  grid-template-columns: 0.5fr 3fr 2fr 1fr 1fr 0.5fr;
 }
 
 .book:first-child {
@@ -120,9 +120,40 @@ label {
   align-self: center;
 }
 
+.delete-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-btn {
+  justify-content: center;
+}
+
+a {
+  cursor: pointer;
+  z-index: 10;
+}
+
+.delete-btn > i > svg.btn {
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+}
+
+path {
+  fill: #bb0000
+}
 input {
   width: 250px;
   height: 40px;
+}
+
+
+.delete-btn > i > .btn {
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
 }
 
 input::-webkit-outer-spin-button,

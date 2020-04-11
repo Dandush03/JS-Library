@@ -61,10 +61,40 @@ function changeStatus(e) {
   });
 }
 
+function deleteRow(e) {
+  let element
+  const { target: { nodeName } } = e
+  if (nodeName === 'svg') {
+    const { target: { parentNode: { id } } } = e
+    element = id
+  } else if (nodeName === 'path') {
+    const { target: { parentNode: { parentNode: { id } } } } = e
+    element = id
+  } else {
+    const { target: { id } } = e
+    element = id
+  }
+  element = element.split('-');
+  element = Number(element.pop());
+
+  index = 0
+  const newLib = []
+  myLibrary.forEach(obj => {
+    const { id: bookId } = obj;
+    obj.id = index + 1;
+    if (bookId != element) {
+      newLib.push(obj)
+      console.log(obj)
+      index += 1
+    }
+  });
+  localStorage.setItem('library', JSON.stringify(newLib));
+  location.reload();
+}
+
 function maxWidth(e) {
   const { target: { textLength } } = e;
   if (textLength > 4) {
-    alert("Book Can't Have More than 4 digits in Pages"); // eslint-disable-line no-alert
     e.target.value = '';
   }
 }
@@ -91,6 +121,14 @@ function render() {
         mainContainer.appendChild(spanValue);
       }
     });
+    delteDiv = document.createElement('div');
+    delteDiv.setAttribute('class', 'delete-div')
+    delteBtn = document.createElement('a');
+    delteBtn.innerHTML = `<i id="row-${counter}" class="btn fas fa-backspace"></i>`;
+    delteBtn.setAttribute('class', 'delete-btn');
+    delteBtn.onclick = deleteRow
+    delteDiv.appendChild(delteBtn);
+    mainContainer.appendChild(delteDiv);
     counter += 1;
     document.getElementById('display').appendChild(mainContainer);
   });
