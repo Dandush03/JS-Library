@@ -74,7 +74,6 @@ function deleteRow(e) {
     const { target: { id } } = e;
     element = id;
   }
-  
   element = element.split('-');
   element = Number(element.pop());
 
@@ -83,14 +82,13 @@ function deleteRow(e) {
   myLibrary.forEach(obj => {
     const { id: bookId } = obj;
     obj.id = index + 1;
-    if (bookId != element) {
+    if (bookId !== element) {
       newLib.push(obj);
-      console.log(obj);
       index += 1;
     }
   });
   localStorage.setItem('library', JSON.stringify(newLib));
-  location.reload();
+  location.reload(); // eslint-disable-line sap-no-location-reload
 }
 
 function maxWidth(e) {
