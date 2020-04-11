@@ -1,7 +1,7 @@
-// localStorage.removeItem('library')
+// Set localStorage.removeItem('library');
 
 /** Array of Books  */
-let myLibrary;
+let myLibrary = [];
 const localLibrary = localStorage.getItem('library');
 
 /** Generate an Empty Book  */
@@ -42,13 +42,13 @@ if (localLibrary === null) {
 
 /** Changes Book Status */
 function changeStatus(e) {
-  let { target: { id } } = e;
+  let {'target': {id}} = e;
   id = id.split('-');
   id = Number(id.pop());
-  myLibrary.forEach(obj => {
-    const { id: bookId, isReaded: read } = obj;
+  myLibrary.forEach((obj) => {
+    const {'id': bookId, 'isReaded': read} = obj;
     if (bookId === id) {
-      const { target } = e;
+      const {target} = e;
       if (read === 'Readed') {
         obj.isReaded = 'Pending';
         target.innerText = 'Pending';
@@ -61,17 +61,34 @@ function changeStatus(e) {
   });
 }
 
+/** Validate Inputs! */
+function validateInput() {
+  const inputs = document.getElementById('bookSubmit');
+  let boolean = true;
+  Object.values(inputs).forEach((input) => {
+    const {value, type} = input;
+    if (type === 'text') {
+      if (value === '' || value.length < 6) {
+        boolean = false;
+      }
+    }
+  });
+
+return boolean;
+}
+
+/** This delete a Book from array localStorage */
 function deleteRow(e) {
-  let element;
-  const { target: { nodeName } } = e;
+  let element = null;
+  const {'target': {nodeName}} = e;
   if (nodeName === 'svg') {
-    const { target: { parentNode: { id } } } = e;
+    const {'target': {'parentNode': {id}}} = e;
     element = id;
   } else if (nodeName === 'path') {
-    const { target: { parentNode: { parentNode: { id } } } } = e;
+    const {'target': {'parentNode': {'parentNode': {id}}}} = e;
     element = id;
   } else {
-    const { target: { id } } = e;
+    const {'target': {id}} = e;
     element = id;
   }
   element = element.split('-');
@@ -79,20 +96,22 @@ function deleteRow(e) {
 
   let index = 0;
   const newLib = [];
-  myLibrary.forEach(obj => {
-    const { id: bookId } = obj;
+  myLibrary.forEach((obj) => {
+    const {'id': bookId} = obj;
     obj.id = index + 1;
     if (bookId !== element) {
       newLib.push(obj);
       index += 1;
     }
   });
+
   localStorage.setItem('library', JSON.stringify(newLib));
   location.reload(); // eslint-disable-line no-restricted-globals
 }
 
+/** Validate max length of Numbers */
 function maxWidth(e) {
-  const { target: { textLength } } = e;
+  const {'target': {textLength}} = e;
   if (textLength > 4) {
     e.target.value = '';
   }
@@ -101,11 +120,11 @@ function maxWidth(e) {
 /** Render all Array Elements */
 function render() {
   let counter = 1;
-  myLibrary.forEach(obj => {
+  myLibrary.forEach((obj) => {
     const mainContainer = document.createElement('div');
     mainContainer.setAttribute('name', `book-${counter}`);
     mainContainer.setAttribute('class', 'book');
-    Object.values(obj).forEach(value => {
+    Object.values(obj).forEach((value) => {
       if (value === 'Readed' || value === 'Pending') {
         const btn = document.createElement('button');
         btn.innerText = value;
@@ -123,7 +142,8 @@ function render() {
     const delteDiv = document.createElement('div');
     delteDiv.setAttribute('class', 'delete-div');
     const delteBtn = document.createElement('a');
-    delteBtn.innerHTML = `<i id="row-${counter}" class="btn fas fa-backspace"></i>`;
+    const icon = `<i id="row-${counter}" class="btn fas fa-backspace"></i>`;
+    delteBtn.innerHTML = icon;
     delteBtn.setAttribute('class', 'delete-btn');
     delteBtn.onclick = deleteRow;
     delteDiv.appendChild(delteBtn);
@@ -133,18 +153,27 @@ function render() {
   });
 }
 
+/** Add Book to Library */
 function addBookToLibrary() {
+  if (validateInput()) {
   const inputs = document.getElementById('bookSubmit');
   const book = new Book();
-  Object.keys(book).forEach(key => {
+  Object.keys(book).forEach((key) => {
     if (key !== 'isReaded' && key !== 'id') {
       book[key] = inputs[key].value;
     } else if (key === 'id') {
       book[key] = myLibrary.length + 1;
     }
   });
+  validateInput();
   myLibrary.push(book);
   localStorage.setItem('library', JSON.stringify(myLibrary));
+
+return true;
+  }
+
+return false;
+
 }
 
 /** Creat a form on click  */
@@ -159,7 +188,7 @@ function formCreator() {
     const formTitle = document.createElement('h2');
     formTitle.innerText = 'Which Book You Want to Add?';
     form.appendChild(formTitle);
-    Object.keys(book).forEach(key => {
+    Object.keys(book).forEach((key) => {
       if (key !== 'isReaded' && key !== 'id') {
         const wrapper = document.createElement('div');
         const lbl = document.createElement('label');
