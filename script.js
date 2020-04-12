@@ -42,13 +42,13 @@ if (localLibrary === null) {
 
 /** Changes Book Status */
 function changeStatus(e) {
-  let {'target': {id}} = e;
+  let { target: { id } } = e;
   id = id.split('-');
   id = Number(id.pop());
   myLibrary.forEach((obj) => {
-    const {'id': bookId, 'isReaded': read} = obj;
+    const { id: bookId, isReaded: read } = obj;
     if (bookId === id) {
-      const {target} = e;
+      const { target } = e;
       if (read === 'Readed') {
         obj.isReaded = 'Pending';
         target.innerText = 'Pending';
@@ -66,7 +66,7 @@ function validateInput() {
   const inputs = document.getElementById('bookSubmit');
   let boolean = true;
   Object.values(inputs).forEach((input) => {
-    const {value, type} = input;
+    const { value, type } = input;
     if (type === 'text') {
       if (value === '' || value.length < 6) {
         boolean = false;
@@ -74,21 +74,21 @@ function validateInput() {
     }
   });
 
-return boolean;
+  return boolean;
 }
 
 /** This delete a Book from array localStorage */
 function deleteRow(e) {
   let element = null;
-  const {'target': {nodeName}} = e;
+  const { target: { nodeName } } = e;
   if (nodeName === 'svg') {
-    const {'target': {'parentNode': {id}}} = e;
+    const { target: { parentNode: { id } } } = e;
     element = id;
   } else if (nodeName === 'path') {
-    const {'target': {'parentNode': {'parentNode': {id}}}} = e;
+    const { target: { parentNode: { parentNode: { id } } } } = e;
     element = id;
   } else {
-    const {'target': {id}} = e;
+    const { target: { id } } = e;
     element = id;
   }
   element = element.split('-');
@@ -97,7 +97,7 @@ function deleteRow(e) {
   let index = 0;
   const newLib = [];
   myLibrary.forEach((obj) => {
-    const {'id': bookId} = obj;
+    const { id: bookId } = obj;
     obj.id = index + 1;
     if (bookId !== element) {
       newLib.push(obj);
@@ -111,7 +111,7 @@ function deleteRow(e) {
 
 /** Validate max length of Numbers */
 function maxWidth(e) {
-  const {'target': {textLength}} = e;
+  const { target: { textLength } } = e;
   if (textLength > 4) {
     e.target.value = '';
   }
@@ -156,24 +156,23 @@ function render() {
 /** Add Book to Library */
 function addBookToLibrary() {
   if (validateInput()) {
-  const inputs = document.getElementById('bookSubmit');
-  const book = new Book();
-  Object.keys(book).forEach((key) => {
-    if (key !== 'isReaded' && key !== 'id') {
-      book[key] = inputs[key].value;
-    } else if (key === 'id') {
-      book[key] = myLibrary.length + 1;
-    }
-  });
-  validateInput();
-  myLibrary.push(book);
-  localStorage.setItem('library', JSON.stringify(myLibrary));
+    const inputs = document.getElementById('bookSubmit');
+    const book = new Book();
+    Object.keys(book).forEach((key) => {
+      if (key !== 'isReaded' && key !== 'id') {
+        book[key] = inputs[key].value;
+      } else if (key === 'id') {
+        book[key] = myLibrary.length + 1;
+      }
+    });
+    validateInput();
+    myLibrary.push(book);
+    localStorage.setItem('library', JSON.stringify(myLibrary));
 
-return true;
+    return true;
   }
 
-return false;
-
+  return false;
 }
 
 /** Creat a form on click  */
