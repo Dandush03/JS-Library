@@ -45,7 +45,8 @@ function changeStatus(e) {
   let { target: { id } } = e;
   id = id.split('-');
   id = Number(id.pop());
-  myLibrary.forEach((obj) => {
+  myLibrary.forEach((tempObj) => {
+    const obj = tempObj;
     const { id: bookId, isReaded: read } = obj;
     if (bookId === id) {
       const { target } = e;
@@ -96,7 +97,8 @@ function deleteRow(e) {
 
   let index = 0;
   const newLib = [];
-  myLibrary.forEach((obj) => {
+  myLibrary.forEach((tempObj) => {
+    const obj = tempObj;
     const { id: bookId } = obj;
     obj.id = index + 1;
     if (bookId !== element) {
