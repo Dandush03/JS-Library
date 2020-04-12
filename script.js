@@ -64,17 +64,39 @@ function changeStatus(e) {
 
 /** Validate Inputs! */
 function validateInput() {
+  const deleteDiv = document.getElementById('warning-msg');
+  if (deleteDiv) {
+    deleteDiv.remove();
+  }
   const inputs = document.getElementById('bookSubmit');
   let boolean = true;
+  const container = document.createElement('div');
+  container.setAttribute('class', 'warnings');
+  container.id = 'warning-msg';
   Object.values(inputs).forEach((input) => {
-    const { value, type } = input;
-    if (type === 'text') {
-      if (value === '' || value.length < 6) {
+    const {
+      value, nodeName, name, type,
+    } = input;
+    if (nodeName === 'INPUT') {
+      const lblName = name.charAt(0).toUpperCase() + name.slice(1);
+      const lbl = document.createElement('span');
+      if (type === 'text') {
+        if (value === '') {
+          boolean = false;
+          lbl.innerText = `${lblName}: Most have value`;
+        } else if (value.length < 6) {
+          boolean = false;
+          lbl.innerText = `${lblName}: Should have at least 6 character`;
+        }
+      } else if (value === '') {
         boolean = false;
+        lbl.innerText = `${lblName}: Most have value`;
       }
+      container.appendChild(lbl);
     }
   });
-
+  const frm = document.getElementById('bookSubmit');
+  frm.insertBefore(container, frm.childNodes[1]);
   return boolean;
 }
 

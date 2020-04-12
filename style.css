@@ -156,6 +156,13 @@ input {
   cursor: pointer;
 }
 
+.warnings {
+  flex-direction: column;
+  font-size: 80%;
+  color: red;
+  text-align: center;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
